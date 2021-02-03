@@ -20,3 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 	return view('index');
 });
+
+
+Route::post('/login', 'App\Http\Controllers\UserRegisterAndLogin@login');
+
+
+Route::group(['middleware' => ['UserAuth']], function () {
+	Route::view('/home', 'home');
+});
+
+
+Route::post('/logout','App\Http\Controllers\UserRegisterAndLogin@logout');
